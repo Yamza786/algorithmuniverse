@@ -6,8 +6,7 @@ Insertion Sort with comparisons and writes highlighted.
 
 ## Run
 
-From this directory, serve the static files (opening `index.html` directly also
-works in browsers that allow ES modules from local files):
+From this directory, serve the static files so browser ES modules load reliably:
 
 ```sh
 python -m http.server 8000

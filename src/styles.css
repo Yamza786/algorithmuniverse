@@ -17,5 +17,6 @@ button:disabled { cursor: not-allowed; opacity: .5; }
 .bar.compare { background: #ffcc66; }
 .bar.swap, .bar.write { background: #ff6b8a; }
 .bar.done { background: #54d6a0; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 #message { min-height: 1.5em; }
 @media (max-width: 560px) { main { margin-block: 1.25rem; } #bars { height: 220px; } }

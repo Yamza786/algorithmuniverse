@@ -6,6 +6,7 @@ const valuesInput = document.querySelector('#values');
 const algorithmInput = document.querySelector('#algorithm');
 const speedInput = document.querySelector('#speed');
 const counters = document.querySelector('#counters');
+const arrayDescription = document.querySelector('#array-description');
 const stepButton = document.querySelector('#step');
 const playButton = document.querySelector('#play');
 const resetButton = document.querySelector('#reset');
@@ -15,8 +16,9 @@ let cursor = 0;
 let timer;
 
 function parseValues() {
-  const values = valuesInput.value.split(',').map((part) => Number(part.trim()));
-  if (!values.length || values.length > 80 || values.some((value) => !Number.isFinite(value))) {
+  const parts = valuesInput.value.split(',').map((part) => part.trim());
+  const values = parts.map(Number);
+  if (parts.length > 80 || parts.some((part) => part === '') || values.some((value) => !Number.isFinite(value))) {
     throw new Error('Enter 1 to 80 comma-separated numbers.');
   }
   return values;
@@ -26,6 +28,8 @@ function draw(step) {
   const min = Math.min(...step.values, 0);
   const max = Math.max(...step.values, 0);
   const spread = max - min;
+  bars.setAttribute('aria-label', `Array values: ${step.values.join(', ')}`);
+  arrayDescription.textContent = `Array values, left to right: ${step.values.join(', ')}.`;
   bars.replaceChildren(...step.values.map((value, index) => {
     const bar = document.createElement('div');
     bar.className = 'bar';
@@ -33,7 +37,6 @@ function draw(step) {
     else if (step.indices.includes(index)) bar.classList.add(step.type);
     const height = spread === 0 ? 60 : 8 + ((value - min) / spread) * 92;
     bar.style.height = `${height}%`;
-    bar.setAttribute('aria-label', `Value ${value}, position ${index + 1}`);
     bar.title = String(value);
     return bar;
   }));
