@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>AlgorithmUniverse · Sorting Lab</title>
+  <link rel="stylesheet" href="./src/styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <main>
+    <h1>AlgorithmUniverse</h1>
+    <p class="intro">Watch elementary sorting algorithms work through an array, one comparison at a time.</p>
+    <section class="panel" aria-label="Visualiser settings">
+      <label for="algorithm">Algorithm
+        <select id="algorithm">
+          <option value="bubble">Bubble Sort · O(n²)</option>
+          <option value="selection">Selection Sort · O(n²)</option>
+          <option value="insertion">Insertion Sort · O(n²)</option>
+        </select>
+      </label>
+      <label for="values">Values (1–80 numbers)
+        <input id="values" value="62, 24, 88, 15, 53, 39, 71" inputmode="decimal">
+      </label>
+      <label for="speed">Step delay · <output id="speed-label">250 ms</output>
+        <input id="speed" type="range" min="50" max="1000" step="50" value="250">
+      </label>
+    </section>
+    <div class="actions" aria-label="Playback controls">
+      <button id="step" type="button">Step</button>
+      <button id="play" type="button">Play</button>
+      <button id="reset" type="button">Reset</button>
+      <button id="random" type="button">Random array</button>
+    </div>
+    <p id="message" role="status" aria-live="polite"></p>
+    <div id="bars" role="img" aria-label="Array values shown as vertical bars"></div>
+    <p id="counters" class="hint"></p>
+  </main>
+  <script>
+    const speed = document.querySelector('#speed');
+    const label = document.querySelector('#speed-label');
+    speed.addEventListener('input', () => { label.value = `${speed.value} ms`; });
+  </script>
+</body>
+</html>
